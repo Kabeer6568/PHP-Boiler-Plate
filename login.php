@@ -1,3 +1,17 @@
+<?php
+
+require_once "classes/student.php";
+
+$student = new Student;
+
+if (isset($_POST['submit'])) {
+    $student->stu_login($_POST['username'] , $_POST['pass']);
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,19 +223,19 @@
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Login to your account</p>
 
-                <form onsubmit="handleLogin(event)">
+                <form method="post">
                     <div class="form-group">
-                        <label for="loginEmail">Email</label>
-                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                        <label for="loginEmail">Username OR Email</label>
+                        <input type="text" id="loginEmail" name="username" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-group password-toggle">
                         <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        <input type="password" id="loginPassword" name="pass" placeholder="Enter your password" required>
                         <span class="toggle-icon" onclick="togglePassword('loginPassword')">👁️</span>
                     </div>
 
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" name="submit" class="btn">Login</button>
                 </form>
 
                 <p class="switch-text">
@@ -243,14 +257,14 @@
             input.type = input.type === 'password' ? 'text' : 'password';
         }
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
+        // function handleLogin(e) {
+        //     e.preventDefault();
+        //     const email = document.getElementById('loginEmail').value;
+        //     const password = document.getElementById('loginPassword').value;
             
-            alert(`Login attempted with:\nEmail: ${email}`);
-            // Add your login logic here
-        }
+        //     alert(`Login attempted with:\nEmail: ${email}`);
+        //     // Add your login logic here
+        // }
     </script>
 </body>
 </html>

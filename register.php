@@ -1,3 +1,18 @@
+<?php
+
+require_once "classes/student.php";
+
+$reg = new Student;
+
+if (isset($_POST['submit'])) {
+    $reg->stu_registeration($_POST['username'] , $_POST['useremail'] , $_POST['pass'] , $_POST['course']);
+}
+else{
+    echo "please fill all fields";
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,26 +224,26 @@
                 <h2>Create Account</h2>
                 <p class="subtitle">Sign up to get started</p>
 
-                <form onsubmit="handleRegister(event)">
+                <form method="post" >
                     <div class="form-group">
                         <label for="registerUsername">Username</label>
-                        <input type="text" id="registerUsername" placeholder="Choose a username" required>
+                        <input type="text" id="registerUsername" name="username" placeholder="Choose a username" required>
                     </div>
 
                     <div class="form-group">
                         <label for="registerEmail">Email</label>
-                        <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                        <input type="email" id="registerEmail" name="useremail" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-group password-toggle">
                         <label for="registerPassword">Password</label>
-                        <input type="password" id="registerPassword" placeholder="Create a password" required>
+                        <input type="password" id="registerPassword" name="pass" placeholder="Create a password" required>
                         <span class="toggle-icon" onclick="togglePassword('registerPassword')">👁️</span>
                     </div>
 
                     <div class="form-group">
                         <label for="course">Course</label>
-                        <select id="course" required>
+                        <select id="course" name="course" required>
                             <option value="">Select a course</option>
                             <option value="web-development">Web Development</option>
                             <option value="mobile-development">Mobile Development</option>
@@ -239,7 +254,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit" name="submit" class="btn">Register</button>
                 </form>
 
                 <p class="switch-text">
@@ -261,16 +276,16 @@
             input.type = input.type === 'password' ? 'text' : 'password';
         }
 
-        function handleRegister(e) {
-            e.preventDefault();
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const course = document.getElementById('course').value;
+        // function handleRegister(e) {
+        //     e.preventDefault();
+        //     const username = document.getElementById('registerUsername').value;
+        //     const email = document.getElementById('registerEmail').value;
+        //     const password = document.getElementById('registerPassword').value;
+        //     const course = document.getElementById('course').value;
             
-            alert(`Registration attempted with:\nUsername: ${username}\nEmail: ${email}\nCourse: ${course}`);
-            // Add your registration logic here
-        }
+        //     alert(`Registration attempted with:\nUsername: ${username}\nEmail: ${email}\nCourse: ${course}`);
+        //     // Add your registration logic here
+        // }
     </script>
 </body>
 </html>
